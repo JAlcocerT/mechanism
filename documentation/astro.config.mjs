@@ -6,7 +6,8 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://celestialdocs.hyperoot.dev",
+  site: "https://jalcocert.github.io/",
+  base: '/mechanism', //as per the repo name
   markdown: {
     smartypants: true,
     syntaxHighlight: "shiki",
