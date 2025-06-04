@@ -21,11 +21,19 @@ const { class: className } = Astro.props;
         ${level === 0 ? "font-semibold" : "text-muted-foreground"}
         ${pathname === "/" + item.slug ? "text-primary" : "no-underline"}
         `.trim();
+        const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+        const fullHref = `${basePath}/${item.slug}`;
+        const isActive = pathname === `/${item.slug}` || 
+                       pathname === `${basePath}/${item.slug}` ||
+                       (pathname === basePath && item.slug === '');
+        
         return (
           <li class="w-full">
             <a
-              href={`/${item.slug}`}
-              class={`${className}  text-sm leading-none w-full`}
+              href={fullHref}
+              class={`${className} text-sm leading-none w-full ${
+                isActive ? 'text-primary' : ''
+              }`}
             >
               {label}
             </a>

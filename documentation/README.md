@@ -1,3 +1,15 @@
+* https://github.com/HYP3R00T/CelestialDocs
+
+> MIT |  CelestialDocs is a minimal and versatile documentation template built with Astro and Tailwind CSS. It offers a clean interface, fast static site generation, and modern UI components with Shadcn UI. Easily customizable, it's perfect for creating well-structured documentation sites. 
+
+```sh
+cd documentation
+npm install
+npm run dev
+```
+
+---
+
 <h1 align="center">CelestialDocs</h1>
 
 <p align="center">

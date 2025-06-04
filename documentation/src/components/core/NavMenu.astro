@@ -9,25 +9,26 @@ const pathname_part = pathname.split("/")[1];
 
 <div class="flex gap-4">
   {
-    menu_items.map((item) => (
-      <a href={item.href}>
-        <Button
-          variant={
-            "/" + pathname_part === "/" + item.href.split("/")[1]
-              ? "secondary"
-              : "ghost"
-          }
-          key={item.href}
-          className={
-            "/" + pathname_part === "/" + item.href.split("/")[1]
-              ? "text-foreground"
-              : "text-muted-foreground"
-          }
-          client:load
-        >
-          {item.title}
-        </Button>
-      </a>
-    ))
+    menu_items.map((item) => {
+      const basePath = import.meta.env.BASE_URL.replace(/\/$/, ''); // Remove trailing slash if present
+      const fullHref = `${basePath}${item.href}`;
+      const currentPath = `/${pathname_part}`;
+      const itemPath = `/${item.href.split('/')[1]}`;
+      const isActive = currentPath === itemPath || 
+                     (currentPath === basePath && item.href === '/');
+      
+      return (
+        <a href={fullHref}>
+          <Button
+            variant={isActive ? "secondary" : "ghost"}
+            key={item.href}
+            className={isActive ? "text-foreground" : "text-muted-foreground"}
+            client:load
+          >
+            {item.title}
+          </Button>
+        </a>
+      );
+    })
   }
 </div>

@@ -42,17 +42,26 @@ const pathname_part: string = pathname.split("/")[1];
   <ScrollArea className=" w-full h-dynamic_hscreen mb-4" client:only="react">
     <div class="mt-6 flex flex-col items-start px-6">
       {
-        menu_items.map((item) => (
-          <a href={item.href}>
-            <Button
-              variant="link"
-              className=`${"/" + pathname_part === "/" + item.href.split("/")[1] ? "underline" : ""} text-foreground`
-              key={item.href}
-            >
+        menu_items.map((item) => {
+          const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+          const fullHref = `${basePath}${item.href}`;
+          const currentPath = `/${pathname_part}`;
+          const itemPath = `/${item.href.split('/')[1]}`;
+          const isActive = currentPath === itemPath || 
+                         (currentPath === basePath && item.href === '/');
+          
+          return (
+            <a href={fullHref}>
+              <Button
+                variant="link"
+                className={`${isActive ? "underline" : ""} text-foreground`}
+                key={item.href}
+              >
               {item.title}
-            </Button>
-          </a>
-        ))
+              </Button>
+            </a>
+          )
+        })
       }
       {
         !docconfig.hide_side_navigations && (

@@ -6,3 +6,5 @@ project
 venv
 
 scratch*
+
+node_modules/
