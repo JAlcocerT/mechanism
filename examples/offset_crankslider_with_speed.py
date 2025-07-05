@@ -37,13 +37,23 @@ mechanism.iterate()
 ani, fig, ax = mechanism.get_animation(velocity=True, acceleration=True, scale=0.2)
 ax.set_title('Offset Crank Slider with Speed Display')
 
-# Add a text annotation for slider speed (top right)
+# --- Unit conversions ---
+INCHES_TO_METERS = 0.0254
+MINUTES_TO_SECONDS = 1/60
+CONVERSION = INCHES_TO_METERS * MINUTES_TO_SECONDS  # inches/min to m/s
+
+# Convert slider speed to m/s
+slider_speed_mps = d.vel.r_dots * CONVERSION  # array
+
+# Crank speed: v = r * omega (omega in rad/min, r in inches)
+crank_radius = 6  # inches (constant crank length)
+crank_omega = w2    # in rad/min (array)
+crank_speed_mps = crank_radius * crank_omega * CONVERSION  # array
+
+# Add a text annotation for both speeds (top right)
 speed_text = ax.text(0.98, 0.98, '', transform=ax.transAxes,
                      ha='right', va='top', fontsize=12,
                      bbox=dict(facecolor='white', alpha=0.7, edgecolor='none'))
-
-# Get the slider velocity array (assume d.vel.r_dots is the slider velocity)
-slider_speed = d.vel.r_dots
 
 # Patch FuncAnimation to update speed text dynamically
 orig_func = ani._func if hasattr(ani, '_func') else None
@@ -52,9 +62,11 @@ orig_func = ani._func if hasattr(ani, '_func') else None
 if hasattr(ani, '_draw_next_frame'):
     orig_draw_next_frame = ani._draw_next_frame
     def _draw_next_frame(frame, blit):
-        # Update speed text
-        if frame < len(slider_speed):
-            speed_text.set_text(f"Slider speed: {slider_speed[frame]:.2f} in/min")
+        # Update speed text with both values in m/s
+        if frame < len(slider_speed_mps):
+            speed_text.set_text(
+                f"Slider speed: {slider_speed_mps[frame]:.3f} m/s\nCrank speed: {crank_speed_mps[frame]:.3f} m/s"
+            )
         else:
             speed_text.set_text("")
         return orig_draw_next_frame(frame, blit)
