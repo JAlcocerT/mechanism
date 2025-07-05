@@ -48,6 +48,7 @@ ani, fig, ax = mechanism.get_animation(velocity=True, acceleration=True, scale=0
 ax.set_title('Offset Crank Slider')
 
 # ani.save('../animations/offset_crankslider.mp4', dpi=240)
+ani.save('./animations/offset_crankslider.gif', writer='pillow', fps=30)
 
 # Plot the velocity of point B
 # Access the velocity of point B through r_dot of vector d. This will show the magnitude as well as the direction. The

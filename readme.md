@@ -24,6 +24,20 @@ Install this package via pip: `pip install mechanism`. If you are interested in 
 git clone https://github.com/gabemorris12/mechanism.git
 cd mechanism
 pip install -e .
+
+#python -m venv gabe_mechanism_venv #create the venv
+python3 -m venv gabe_mechanism_venv #create the venv
+
+#gabe_mechanism_venv\Scripts\activate #activate venv (windows)
+source gabe_mechanism_venv/bin/activate #(linux/mac)
+
+# uv init
+# uv add matplotlib scipy
+# uv pip install -e .
+# uv sync
+
+#RUN ONE EXAMPLE
+#python3 ./examples/offset_crankslider.py
 ```
 
 # Tutorials

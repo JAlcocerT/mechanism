@@ -48,6 +48,7 @@ ani, fig, ax = mechanism.get_animation(velocity=True, acceleration=True, stamp=t
 ax.set_title('Engine')
 
 # ani.save('../animations/engine.mp4', dpi=300)
+ani.save('./animations/engine.gif', writer='pillow', fps=30)
 
 # If interested at a certain point, access the Joint attributes.
 # fig2, ax2 = plt.subplots()

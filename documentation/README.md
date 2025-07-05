@@ -1,3 +1,10 @@
+Adding Astro celestial docs to the project mechanism.
+
+Deployed as a github pages site for everyone to use.
+
+---
+
+
 * https://github.com/HYP3R00T/CelestialDocs
 
 > MIT |  CelestialDocs is a minimal and versatile documentation template built with Astro and Tailwind CSS. It offers a clean interface, fast static site generation, and modern UI components with Shadcn UI. Easily customizable, it's perfect for creating well-structured documentation sites. 
