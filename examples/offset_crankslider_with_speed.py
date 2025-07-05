@@ -82,6 +82,7 @@ if hasattr(ani, '_draw_next_frame'):
     ani._draw_next_frame = _draw_next_frame
 
 # Save animation with speed overlay
-i = ani.save('./animations/offset_crankslider_with_speed-YTShort.gif', writer='pillow', fps=fps)
+#i = ani.save('./animations/offset_crankslider_with_speed-YTShort.gif', writer='pillow', fps=fps)
+i = ani.save('./animations/offset_crankslider_with_speed-YTShort.mp4', writer='ffmpeg', fps=fps)
 
 plt.show()

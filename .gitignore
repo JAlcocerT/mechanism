@@ -8,3 +8,4 @@ project
 scratch*
 
 node_modules/
+*.mp3
