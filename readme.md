@@ -1,3 +1,7 @@
+Wrote about this project, [here](https://jalcocert.github.io/JAlcocerT/gabemorris12-mechanism-project-setup/)
+
+---
+
 # Purpose
 
 [![PyPI version](https://badge.fury.io/py/mechanism.svg)](https://badge.fury.io/py/mechanism)

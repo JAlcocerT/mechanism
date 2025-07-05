@@ -19,8 +19,16 @@ d = Vector((O, P), theta=0, style='ground')
 def loop(x, inp):
     return a(inp) + b(x[0]) - c() - d(x[1])
 
-# Input and guesses
-t = np.linspace(0, 0.1, 250)  # time
+# --- Animation settings for YouTube Short (9:16, 13 seconds) ---
+desired_duration_sec = 13
+fps = 30
+num_frames = desired_duration_sec * fps
+# You may adjust the time range (here, 0 to 0.1 min) as needed for your mechanism
+# This keeps the same simulation range but at higher frame density
+# If you want to slow down or speed up the simulation, adjust the 0.1 value
+# For now, we'll keep it as in the original
+
+t = np.linspace(0, 0.1, num_frames)  # time
 th2 = 20*np.pi*t
 w2 = np.full(th2.size, 20*np.pi)
 a2 = np.zeros(th2.size)
@@ -35,6 +43,7 @@ mechanism.iterate()
 
 # Get the animation, figure, and axes objects
 ani, fig, ax = mechanism.get_animation(velocity=True, acceleration=True, scale=0.2)
+fig.set_size_inches(5, 8.88)  # 9:16 aspect ratio for YouTube Shorts
 ax.set_title('Offset Crank Slider with Speed Display')
 
 # --- Unit conversions ---
@@ -73,6 +82,6 @@ if hasattr(ani, '_draw_next_frame'):
     ani._draw_next_frame = _draw_next_frame
 
 # Save animation with speed overlay
-i = ani.save('./animations/offset_crankslider_with_speed.gif', writer='pillow', fps=30)
+i = ani.save('./animations/offset_crankslider_with_speed-YTShort.gif', writer='pillow', fps=fps)
 
 plt.show()
